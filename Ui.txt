@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>WiseCash — UI Concept</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+--sage:#F3F6F0;
+--teal:#0F5C56;
+--teal-light:#1C7A70;
+--teal-deep:#0A3733;
+--marigold:#F2A93B;
+--marigold-light:#FFC968;
+--marigold-deep:#C97F1B;
+--coral:#E8654A;
+--ink:#12211D;
+--ink-soft:#5E6E68;
+--line:#E1E7DD;
+--card:#FFFFFF;
+--danger:#C1503E;
+--shadow-teal: 0 10px 24px -8px rgba(10,55,51,.35);
+--shadow-soft: 0 6px 18px -6px rgba(20,40,35,.14);
+}
+*{box-sizing:border-box;}
+body{
+margin:0;
+font-family:'Inter',sans-serif;
+background:
+radial-gradient(circle at 15% 8%, rgba(242,169,59,.10), transparent 40%),
+radial-gradient(circle at 85% 92%, rgba(15,92,86,.10), transparent 40%),
+#EBEFE6;
+display:flex;
+flex-wrap:wrap;
+gap:40px;
+justify-content:center;
+padding:56px 20px 70px;
+color:var(--ink);
+}
+.hero-header{
+width:100%;
+max-width:760px;
+text-align:center;
+margin-bottom:6px;
+}
+.hero-header .eyebrow{
+font-family:'IBM Plex Mono',monospace;
+font-size:11.5px;
+letter-spacing:.14em;
+text-transform:uppercase;
+color:var(--marigold-deep);
+font-weight:600;
+margin-bottom:10px;
+}
+h1.page-title{
+font-family:'Sora',sans-serif;
+font-weight:800;
+font-size:32px;
+letter-spacing:-.02em;
+color:var(--teal-deep);
+margin:0 0 10px 0;
+}
+h1.page-title span{ color:var(--marigold-deep); }
+.caption{
+color:var(--ink-soft);
+font-size:15px;
+line-height:1.55;
+max-width:520px;
+margin:0 auto;
+}
+.phone-wrap{
+text-align:center;
+animation:riseIn .6s ease both;
+}
+.phone-wrap:nth-child(2){ animation-delay:.05s; }
+.phone-wrap:nth-child(3){ animation-delay:.1s; }
+.phone-wrap:nth-child(4){ animation-delay:.15s; }
+.phone-wrap:nth-child(5){ animation-delay:.2s; }
+@keyframes riseIn{ from{opacity:0; transform:translateY(14px);} to{opacity:1; transform:translateY(0);} }
+
+.phone-label{
+font-family:'Sora',sans-serif;
+font-weight:700;
+font-size:13px;
+letter-spacing:.03em;
+color:var(--teal-deep);
+margin-bottom:4px;
+}
+.phone-sub{
+font-size:11.5px;
+color:var(--ink-soft);
+margin-bottom:14px;
+}
+.phone{
+width:322px;
+height:668px;
+background:var(--sage);
+border-radius:44px;
+border:10px solid var(--ink);
+overflow:hidden;
+position:relative;
+box-shadow:
+0 30px 60px -18px rgba(10,55,51,.38),
+0 2px 0 rgba(255,255,255,.4) inset;
+display:flex;
+flex-direction:column;
+}
+.notch{
+height:26px;
+background:var(--ink);
+display:flex;
+align-items:center;
+justify-content:center;
+flex-shrink:0;
+}
+.notch::after{
+content:'';
+width:70px;height:9px;background:#000;border-radius:6px;
+box-shadow:0 0 0 1px #222 inset;
+}
+.statusbar{
+height:26px;
+background:var(--sage);
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:0 20px;
+font-size:11px;
+font-family:'IBM Plex Mono',monospace;
+color:var(--ink);
+flex-shrink:0;
+}
+.topbar{
+padding:12px 16px 12px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+background:var(--sage);
+border-bottom:1px solid var(--line);
+flex-shrink:0;
+}
+.topbar .brand{
+font-family:'Sora',sans-serif;
+font-weight:800;
+font-size:17px;
+color:var(--teal-deep);
+display:flex;
+align-items:center;
+gap:7px;
+}
+.brand .logo-mark{
+width:22px;height:22px;border-radius:7px;
+background:linear-gradient(135deg,var(--marigold-light),var(--marigold-deep));
+display:flex;align-items:center;justify-content:center;
+color:#fff;font-size:11px;font-weight:800;
+box-shadow:var(--shadow-soft);
+}
+.icon-btn{
+width:32px;height:32px;border-radius:50%;
+background:var(--card);border:1px solid var(--line);
+display:flex;align-items:center;justify-content:center;
+box-shadow:var(--shadow-soft);
+color:var(--teal-deep);
+}
+.content{
+flex:1;
+overflow-y:auto;
+background:var(--sage);
+}
+.content::-webkit-scrollbar{display:none;}
+
+/* ---- TAB BAR ---- */
+.tabbar{
+display:flex;
+border-top:1px solid var(--line);
+background:var(--card);
+flex-shrink:0;
+padding-bottom:2px;
+}
+.tab{
+flex:1;
+display:flex;
+flex-direction:column;
+align-items:center;
+gap:4px;
+padding:10px 0 9px;
+font-size:10px;
+font-family:'Inter',sans-serif;
+font-weight:600;
+color:var(--ink-soft);
+position:relative;
+}
+.tab.active{ color:var(--teal); }
+.tab.active::before{
+content:'';
+position:absolute; top:0; width:26px; height:3px;
+background:var(--marigold); border-radius:0 0 4px 4px;
+}
+.tab svg{ width:19px; height:19px; }
+
+/* ---- FEED ---- */
+.feed-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:3px;
+padding:3px;
+}
+.feed-item{
+position:relative;
+aspect-ratio:9/13;
+display:flex;
+align-items:flex-end;
+overflow:hidden;
+border-radius:2px;
+}
+.feed-item.p1{ background:
+radial-gradient(circle at 30% 20%, rgba(255,255,255,.18), transparent 45%),
+linear-gradient(155deg,#136B62 0%, #0A3733 100%); }
+.feed-item.p2{ background:
+radial-gradient(circle at 70% 25%, rgba(255,255,255,.16), transparent 45%),
+linear-gradient(155deg,#3F8F6C 0%, #1B4A3A 100%); }
+.feed-item.p3{ background:
+radial-gradient(circle at 40% 15%, rgba(255,255,255,.2), transparent 45%),
+linear-gradient(155deg,#D99A3E 0%, #7A501C 100%); }
+.feed-item.p4{ background:
+radial-gradient(circle at 65% 20%, rgba(255,255,255,.16), transparent 45%),
+linear-gradient(155deg,#2E6E7A 0%, #143842 100%); }
+.feed-item.p5{ background:
+radial-gradient(circle at 35% 30%, rgba(255,255,255,.18), transparent 45%),
+linear-gradient(155deg,#B85B3E 0%, #5C2A1B 100%); }
+.feed-item.p6{ background:
+radial-gradient(circle at 60% 15%, rgba(255,255,255,.18), transparent 45%),
+linear-gradient(155deg,#1C7A70 0%, #0A3733 100%); }
+.feed-item .overlay{
+position:absolute; inset:0;
+background:linear-gradient(to top, rgba(0,0,0,.55) 0%, transparent 45%);
+}
+.feed-item .reel-tag{
+position:absolute; top:9px; left:9px; z-index:2;
+background:rgba(0,0,0,.4);
+backdrop-filter:blur(2px);
+color:#fff; font-size:9px; padding:3px 7px; border-radius:10px;
+font-family:'IBM Plex Mono',monospace;
+display:flex; align-items:center; gap:3px;
+}
+.feed-item .heart{
+position:absolute; top:9px; right:9px; z-index:2;
+color:#fff; font-size:11px; display:flex; align-items:center; gap:3px;
+background:rgba(0,0,0,.28); padding:3px 7px; border-radius:10px;
+}
+.feed-item .shop-pill{
+margin:9px; z-index:2;
+background:linear-gradient(135deg,var(--marigold-light),var(--marigold));
+color:var(--teal-deep);
+font-family:'Sora',sans-serif;
+font-weight:800;
+font-size:10px;
+padding:6px 10px;
+border-radius:20px;
+display:inline-flex;
+align-items:center;
+gap:4px;
+box-shadow:0 4px 10px -2px rgba(0,0,0,.3);
+}
+.feed-item .caption-line{
+position:absolute; bottom:42px; left:9px; right:9px; z-index:2;
+color:#fff; font-size:10.5px; font-weight:500; opacity:.95;
+}
+
+/* ---- CHAT LIST ---- */
+.follow-banner{
+margin:12px;
+background:linear-gradient(120deg,var(--marigold-light),var(--marigold));
+border-radius:14px;
+padding:12px 14px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+box-shadow:var(--shadow-soft);
+}
+.follow-banner .txt{ font-size:11.5px; font-weight:700; color:var(--teal-deep); }
+.follow-banner .txt small{ display:block; font-weight:500; font-size:10px; color:#7A5A16; margin-top:1px; }
+.follow-banner .btn-mini{
+background:var(--teal-deep); color:#fff; font-size:10.5px;
+padding:7px 13px; border-radius:16px; font-weight:700;
+box-shadow:0 4px 10px -3px rgba(10,55,51,.5);
+}
+.chat-row{
+display:flex; gap:11px; align-items:center;
+padding:11px 14px;
+border-bottom:1px solid var(--line);
+background:var(--card);
+}
+.avatar{
+width:46px;height:46px;border-radius:50%;
+display:flex;align-items:center;justify-content:center;
+color:#fff;font-family:'Sora',sans-serif;font-weight:700;font-size:15px;
+flex-shrink:0;
+position:relative;
+box-shadow:var(--shadow-soft);
+}
+.avatar.a1{ background:linear-gradient(135deg,#3F8F6C,#0F5C56); }
+.avatar.a2{ background:linear-gradient(135deg,#E8654A,#B8402A); }
+.avatar.a3{ background:linear-gradient(135deg,#D99A3E,#A6650F); }
+.avatar.a4{ background:linear-gradient(135deg,#1C7A70,#0A3733); }
+.avatar .online{
+position:absolute; bottom:0; right:0; width:11px; height:11px;
+background:#3FB870; border-radius:50%; border:2px solid var(--card);
+}
+.chat-meta{ flex:1; min-width:0; }
+.chat-meta .name{ font-size:13.5px; font-weight:700; display:flex; align-items:center; }
+.chat-meta .prev{
+font-size:11.5px; color:var(--ink-soft);
+white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+margin-top:1px;
+}
+.chat-side{ text-align:right; }
+.chat-side .time{ font-size:9.5px; color:var(--ink-soft); }
+.badge{
+background:var(--teal); color:#fff; font-size:9px; font-weight:700;
+border-radius:50%; width:17px;height:17px;
+display:inline-flex;align-items:center;justify-content:center;
+margin-top:4px; margin-left:auto;
+}
+.tag-seller{
+font-size:8px; background:linear-gradient(120deg,var(--teal-light),var(--teal-deep));
+color:#fff; padding:2px 6px; border-radius:8px; margin-left:6px;
+font-family:'IBM Plex Mono',monospace; letter-spacing:.03em;
+display:inline-flex; align-items:center; gap:2px;
+}
+
+/* ---- CHAT THREAD ---- */
+.thread{ padding:14px 12px; display:flex; flex-direction:column; gap:9px; }
+.bubble{
+max-width:78%;
+padding:9px 12px;
+border-radius:14px;
+font-size:12.5px;
+line-height:1.45;
+box-shadow:var(--shadow-soft);
+}
+.bubble.them{ background:var(--card); align-self:flex-start; border-bottom-left-radius:3px; }
+.bubble.me{ background:linear-gradient(135deg,var(--teal-light),var(--teal-deep)); color:#fff; align-self:flex-end; border-bottom-right-radius:3px; }
+
+.product-card{
+align-self:flex-start;
+background:var(--card);
+border:1px solid var(--line);
+border-radius:16px;
+overflow:hidden;
+width:80%;
+box-shadow:var(--shadow-soft);
+}
+.product-card .img{
+height:86px;
+background:
+radial-gradient(circle at 30% 25%, rgba(255,255,255,.35), transparent 50%),
+linear-gradient(135deg,var(--marigold),var(--marigold-deep));
+position:relative;
+}
+.product-card .img::after{
+content:'📦'; position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-size:26px; opacity:.85;
+}
+.product-card .info{ padding:10px 12px; }
+.product-card .pname{ font-size:12px; font-weight:700; }
+.product-card .pprice{
+font-family:'IBM Plex Mono',monospace;
+font-size:13.5px; color:var(--teal-deep); font-weight:600; margin-top:3px;
+}
+.product-card .stock{ font-size:10px; color:#3FA35C; margin-top:3px; font-weight:600; }
+
+.invoice-card{
+align-self:flex-start;
+background:var(--card);
+border:1.5px dashed var(--teal);
+border-radius:14px;
+width:84%;
+padding:13px;
+position:relative;
+box-shadow:var(--shadow-soft);
+}
+.invoice-card::before, .invoice-card::after{
+content:''; position:absolute; width:14px; height:14px; background:var(--sage);
+border-radius:50%; top:50%; transform:translateY(-50%);
+}
+.invoice-card .head{
+display:flex; justify-content:space-between; align-items:center;
+font-family:'Sora',sans-serif; font-weight:700; font-size:12px; color:var(--teal-deep);
+margin-bottom:7px;
+}
+.invoice-card .status-pill{
+font-size:9px; background:#FDF0DC; color:var(--marigold-deep);
+padding:3px 8px; border-radius:10px; font-weight:700;
+}
+.invoice-row{
+display:flex; justify-content:space-between;
+font-size:11px; color:var(--ink-soft); margin:3px 0;
+}
+.invoice-total{
+display:flex; justify-content:space-between;
+font-family:'IBM Plex Mono',monospace;
+font-weight:700; font-size:13.5px; color:var(--ink);
+border-top:1px dashed var(--line); margin-top:7px; padding-top:7px;
+}
+.pay-btn{
+margin-top:10px; width:100%;
+background:linear-gradient(120deg,var(--teal-light),var(--teal-deep));
+color:#fff; border:none;
+padding:10px 0; border-radius:22px;
+font-family:'Sora',sans-serif; font-weight:700; font-size:11.5px;
+box-shadow:0 8px 16px -4px rgba(10,55,51,.4);
+display:flex; align-items:center; justify-content:center; gap:6px;
+}
+.chat-input{
+padding:10px 12px; background:var(--card); border-top:1px solid var(--line);
+display:flex; gap:8px; align-items:center; flex-shrink:0;
+}
+.chat-input .field{
+flex:1; background:var(--sage); border-radius:20px; padding:9px 14px;
+font-size:11.5px; color:var(--ink-soft); border:1px solid var(--line);
+}
+.chat-input .send{
+width:34px;height:34px;border-radius:50%;
+background:linear-gradient(135deg,var(--teal-light),var(--teal-deep));
+color:#fff;
+display:flex;align-items:center;justify-content:center; font-size:14px;
+box-shadow:0 6px 14px -4px rgba(10,55,51,.5);
+flex-shrink:0;
+}
+
+/* ---- DASHBOARD ---- */
+.dash-hero{
+margin:14px 12px; padding:18px;
+background:linear-gradient(135deg,var(--teal-deep) 0%, var(--teal) 70%, var(--teal-light) 100%);
+border-radius:18px; color:#fff;
+box-shadow:var(--shadow-teal);
+position:relative; overflow:hidden;
+}
+.dash-hero::after{
+content:''; position:absolute; width:140px; height:140px; border-radius:50%;
+background:radial-gradient(circle, rgba(242,169,59,.35), transparent 70%);
+top:-50px; right:-40px;
+}
+.dash-hero .lbl{ font-size:10.5px; opacity:.85; position:relative; }
+.dash-hero .amt{
+font-family:'IBM Plex Mono',monospace; font-size:26px; font-weight:600; margin:5px 0 3px; position:relative;
+}
+.dash-hero .delta{
+font-size:10.5px; color:var(--marigold-light); font-weight:700; position:relative;
+display:inline-flex; align-items:center; gap:3px;
+}
+.dash-row{ display:flex; gap:10px; padding:0 12px; }
+.dash-mini{
+flex:1; background:var(--card); border-radius:14px; padding:12px;
+border:1px solid var(--line);
+box-shadow:var(--shadow-soft);
+}
+.dash-mini .lbl{ font-size:10px; color:var(--ink-soft); font-weight:500; }
+.dash-mini .val{
+font-family:'IBM Plex Mono',monospace; font-size:17px; font-weight:600; margin-top:4px; color:var(--teal-deep);
+}
+.chart-box{
+margin:14px 12px; background:var(--card); border:1px solid var(--line);
+border-radius:16px; padding:14px;
+box-shadow:var(--shadow-soft);
+}
+.chart-box .title{ font-family:'Sora',sans-serif; font-weight:700; font-size:12px; margin-bottom:12px; }
+.bars{ display:flex; align-items:flex-end; gap:7px; height:72px; }
+.bar{ flex:1; background:linear-gradient(180deg,var(--teal-light),var(--teal)); border-radius:5px 5px 0 0; }
+.bar.hi{ background:linear-gradient(180deg,var(--marigold-light),var(--marigold-deep)); }
+.days{ display:flex; gap:7px; margin-top:6px; }
+.days span{ flex:1; text-align:center; font-size:8.5px; color:var(--ink-soft); font-weight:600; }
+.stock-alert{
+margin:0 12px 16px; background:#FDEEEA; border:1px solid #F1C7BC;
+border-radius:14px; padding:11px 13px; font-size:11px; color:var(--danger);
+display:flex; gap:9px; align-items:center; font-weight:500;
+box-shadow:var(--shadow-soft);
+}
+
+/* ---- TOOLS/SETTINGS ---- */
+.settings-group{ margin:14px 12px; }
+.settings-group .glabel{
+font-size:10.5px; text-transform:uppercase; letter-spacing:.06em;
+color:var(--ink-soft); font-weight:700; margin-bottom:7px; padding-left:2px;
+}
+.settings-item{
+background:var(--card); border:1px solid var(--line);
+padding:12px 14px; font-size:12px; display:flex; justify-content:space-between;
+align-items:center; font-weight:500;
+}
+.settings-item:first-of-type{ border-radius:14px 14px 0 0; }
+.settings-item:last-of-type{ border-radius:0 0 14px 14px; border-top:none; }
+.settings-item + .settings-item{ border-top:none; }
+.settings-item .chev{ color:var(--ink-soft); }
+.settings-group > div:first-of-type + .settings-item,
+.settings-group .settings-item{ box-shadow:none; }
+.settings-group{ box-shadow:var(--shadow-soft); border-radius:14px; }
+.profile-card{
+margin:16px 12px; background:linear-gradient(135deg,var(--card),#FBFDF9); border:1px solid var(--line);
+border-radius:16px; padding:16px; display:flex; gap:13px; align-items:center;
+box-shadow:var(--shadow-soft);
+}
+.profile-card .avatar{ width:50px; height:50px; }
+.profile-card .pname{ font-family:'Sora',sans-serif; font-weight:700; font-size:14.5px; }
+.profile-card .puser{ font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--teal); margin-top:2px; }
+
+.legend{
+max-width:1180px;
+width:100%;
+background:var(--card);
+border-radius:20px;
+padding:26px 30px;
+font-size:13.5px;
+color:var(--ink-soft);
+line-height:1.65;
+border:1px solid var(--line);
+box-shadow:var(--shadow-soft);
+}
+.legend b{ color:var(--ink); }
+.legend .lt{
+font-family:'Sora',sans-serif; font-weight:700; color:var(--teal-deep); font-size:14px; display:block; margin-bottom:8px;
+}
+</style>
+</head>
+<body>
+
+<div class="hero-header">
+<div class="eyebrow">Concept walkthrough</div>
+<h1 class="page-title">WiseCash <span>UI</span></h1>
+<p class="caption">Four core screens — public discovery feed, chat with commerce built in, a business dashboard, and settings — styled around one idea: money should always look like a receipt, even inside a social feed.</p>
+</div>
+
+<!-- SCREEN 1: FEED -->
+<div class="phone-wrap">
+<div class="phone-label">1 · Update Feed</div>
+<div class="phone-sub">Public discovery — Reels & Photos</div>
+<div class="phone">
+<div class="notch"></div>
+<div class="statusbar"><span>9:41</span><span>●●● 4G 100%</span></div>
+<div class="topbar">
+<div class="brand"><span class="logo-mark">W</span>WiseCash</div>
+<div class="icon-btn">
+<svg viewBox="0 0 24 24" fill="none" width="15" height="15"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="M20 20L16.5 16.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+</div>
+</div>
+<div class="content">
+<div class="feed-grid">
+<div class="feed-item p1"><span class="reel-tag">▶ 0:14</span><div class="overlay"></div>
+<div><div class="caption-line">Fresh kitenge bags, order today</div>
+<div class="shop-pill">🛍 Shop this post</div></div>
+</div>
+<div class="feed-item p2"><span class="heart">♥ 214</span><div class="overlay"></div>
+<div><div class="caption-line">Solar charger restock</div>
+<div class="shop-pill">🛍 Shop this post</div></div>
+</div>
+<div class="feed-item p3"><span class="reel-tag">▶ 0:31</span><div class="overlay"></div>
+<div><div class="caption-line">Behind the shop: packing orders</div></div>
+</div>
+<div class="feed-item p4"><span class="heart">♥ 98</span><div class="overlay"></div>
+<div><div class="caption-line">New arrivals — car mats</div>
+<div class="shop-pill">🛍 Shop this post</div></div>
+</div>
+<div class="feed-item p5"><div class="overlay"></div>
+<div><div class="caption-line">Customer unboxing 🎉</div></div>
+</div>
+<div class="feed-item p6"><span class="reel-tag">▶ 0:22</span><div class="overlay"></div>
+<div><div class="caption-line">Water meter install day</div></div>
+</div>
+</div>
+</div>
+<div class="tabbar">
+<div class="tab active"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="8" height="8" rx="2" fill="currentColor"/><rect x="13" y="3" width="8" height="8" rx="2" fill="currentColor"/><rect x="3" y="13" width="8" height="8" rx="2" fill="currentColor"/><rect x="13" y="13" width="8" height="8" rx="2" fill="currentColor"/></svg>Feed</div>
+<div class="tab"><svg viewBox="0 0 24 24" fill="none"><path d="M4 5h16v11H8l-4 4V5z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>Chats</div>
+<div class="tab"><svg viewBox="0 0 24 24" fill="none"><path d="M4 19V10M12 19V5M20 19v-7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Dashboard</div>
+<div class="tab"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/><path d="M12 3v2M12 19v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M3 12h2M19 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Tools</div>
+</div>
+</div>
+</div>
+
+<!-- SCREEN 2: CHATS + THREAD -->
+<div class="phone-wrap">
+<div class="phone-label">2 · Chat + Commerce</div>
+<div class="phone-sub">Product card → invoice → pay, in one thread</div>
+<div class="phone">
+<div class="notch"></div>
+<div class="statusbar"><span>9:41</span><span>●●● 4G 100%</span></div>
+<div class="topbar">
+<div class="brand" style="font-size:14px; gap:8px;">
+<svg viewBox="0 0 24 24" fill="none" width="16" height="16"><path d="M15 19l-7-7 7-7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+<span class="avatar a3" style="width:28px;height:28px;font-size:11px;">ML</span>
+Madame Lucy <span class="tag-seller">✓ SELLER</span>
+</div>
+<div class="icon-btn">⋮</div>
+</div>
+<div class="content">
+<div class="thread">
+<div class="bubble them">Habari! Nauliza kama gari seat covers zipo stock</div>
+<div class="bubble me">Ndio zipo, angalia hii 👇</div>
+
+<div class="product-card">
+<div class="img"></div>
+<div class="info">
+<div class="pname">Car Seat Cover — Set of 5</div>
+<div class="pprice">TSh 85,000</div>
+<div class="stock">● 12 in stock</div>
+</div>
+</div>
+
+<div class="bubble them">Sawa, nataka set moja. Tuma invoice</div>
+
+<div class="invoice-card">
+<div class="head">Invoice #WC-2381 <span class="status-pill">PENDING</span></div>
+<div class="invoice-row"><span>Car Seat Cover ×1</span><span>85,000</span></div>
+<div class="invoice-row"><span>Delivery</span><span>3,000</span></div>
+<div class="invoice-total"><span>Total</span><span>TSh 88,000</span></div>
+<button class="pay-btn">🔒 Pay with ClickPesa</button>
+</div>
+</div>
+</div>
+<div class="chat-input">
+<div class="field">Type a message…</div>
+<div class="send">
+<svg viewBox="0 0 24 24" fill="none" width="14" height="14"><path d="M4 12L20 4L13 20L11 13L4 12Z" stroke="white" stroke-width="1.6" stroke-linejoin="round" fill="white"/></svg>
+</div>
+</div>
+</div>
+</div>
+
+<!-- SCREEN 3: DASHBOARD -->
+<div class="phone-wrap">
+<div class="phone-label">3 · Seller Dashboard</div>
+<div class="phone-sub">Sales, purchases, stock — at a glance</div>
+<div class="phone">
+<div class="notch"></div>
+<div class="statusbar"><span>9:41</span><span>●●● 4G 100%</span></div>
+<div class="topbar">
+<div class="brand" style="font-size:14px;">Dashboard</div>
+<div class="icon-btn">
+<svg viewBox="0 0 24 24" fill="none" width="15" height="15"><rect x="4" y="5" width="16" height="15" rx="2" stroke="currentColor" stroke-width="2"/><path d="M4 9h16M8 3v3M16 3v3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+</div>
+</div>
+<div class="content">
+<div class="dash-hero">
+<div class="lbl">This week's sales</div>
+<div class="amt">TSh 1,240,000</div>
+<div class="delta">▲ 18% vs last week</div>
+</div>
+<div class="dash-row">
+<div class="dash-mini"><div class="lbl">Orders</div><div class="val">37</div></div>
+<div class="dash-mini"><div class="lbl">Purchases</div><div class="val">TSh 410k</div></div>
+</div>
+<div class="chart-box">
+<div class="title">Sales — last 7 days</div>
+<div class="bars">
+<div class="bar" style="height:35%;"></div>
+<div class="bar" style="height:55%;"></div>
+<div class="bar" style="height:40%;"></div>
+<div class="bar" style="height:70%;"></div>
+<div class="bar hi" style="height:95%;"></div>
+<div class="bar" style="height:60%;"></div>
+<div class="bar" style="height:75%;"></div>
+</div>
+<div class="days"><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span><span>S</span></div>
+</div>
+<div class="stock-alert">⚠ Low stock: Car Seat Cover Set (3 left) — reorder suggested</div>
+</div>
+<div class="tabbar">
+<div class="tab"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="8" height="8" rx="2" fill="currentColor"/><rect x="13" y="3" width="8" height="8" rx="2" fill="currentColor"/><rect x="3" y="13" width="8" height="8" rx="2" fill="currentColor"/><rect x="13" y="13" width="8" height="8" rx="2" fill="currentColor"/></svg>Feed</div>
+<div class="tab"><svg viewBox="0 0 24 24" fill="none"><path d="M4 5h16v11H8l-4 4V5z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>Chats</div>
+<div class="tab active"><svg viewBox="0 0 24 24" fill="none"><path d="M4 19V10M12 19V5M20 19v-7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Dashboard</div>
+<div class="tab"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/><path d="M12 3v2M12 19v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M3 12h2M19 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Tools</div>
+</div>
+</div>
+</div>
+
+<!-- SCREEN 4: TOOLS/SETTINGS -->
+<div class="phone-wrap">
+<div class="phone-label">4 · Tools / Settings</div>
+<div class="phone-sub">Business controls, privacy, staff access</div>
+<div class="phone">
+<div class="notch"></div>
+<div class="statusbar"><span>9:41</span><span>●●● 4G 100%</span></div>
+<div class="topbar">
+<div class="brand" style="font-size:14px;">Tools</div>
+<div class="icon-btn"></div>
+</div>
+<div class="content">
+<div class="profile-card">
+<div class="avatar a4">FC</div>
+<div>
+<div class="pname">Fary Cars & Accessories</div>
+<div class="puser">@fary.cars</div>
+</div>
+</div>
+<div class="settings-group">
+<div class="glabel">Business</div>
+<div class="settings-item"><span>Business profile</span><span class="chev">›</span></div>
+<div class="settings-item"><span>ClickPesa account</span><span class="chev">›</span></div>
+<div class="settings-item"><span>Staff & permissions</span><span class="chev">›</span></div>
+</div>
+<div class="settings-group">
+<div class="glabel">Account</div>
+<div class="settings-item"><span>Privacy & follow requests</span><span class="chev">›</span></div>
+<div class="settings-item"><span>Notifications</span><span class="chev">›</span></div>
+<div class="settings-item"><span>Blocked users</span><span class="chev">›</span></div>
+</div>
+</div>
+<div class="tabbar">
+<div class="tab"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="8" height="8" rx="2" fill="currentColor"/><rect x="13" y="3" width="8" height="8" rx="2" fill="currentColor"/><rect x="3" y="13" width="8" height="8" rx="2" fill="currentColor"/><rect x="13" y="13" width="8" height="8" rx="2" fill="currentColor"/></svg>Feed</div>
+<div class="tab"><svg viewBox="0 0 24 24" fill="none"><path d="M4 5h16v11H8l-4 4V5z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>Chats</div>
+<div class="tab"><svg viewBox="0 0 24 24" fill="none"><path d="M4 19V10M12 19V5M20 19v-7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Dashboard</div>
+<div class="tab active"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/><path d="M12 3v2M12 19v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M3 12h2M19 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Tools</div>
+</div>
+</div>
+</div>
+
+<div class="legend">
+<span class="lt">Design notes</span>
+Palette is deep teal + marigold — teal reads as trust and finance, marigold nods to East African market energy and cash. <b>Every monetary figure across the app uses a monospace face</b> (feed captions excluded), so money always reads like a receipt line, whether it's in a chat bubble, an invoice, or the dashboard — a visible thread tying the social layer back to the POS core. The invoice card keeps its dashed "tear-off" edge on purpose. Cards use soft layered shadows instead of hard borders for a calmer, more premium feel, and the bottom navigation stays fixed at four tabs — <b>Feed, Chats, Dashboard, Tools</b> — matching the product spec exactly.
+</div>
+
+</body>
+</html>
