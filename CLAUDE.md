@@ -5,8 +5,12 @@ this repository and is kept harness-agnostic.
 
 Short version:
 
+- **Read `docs/wisecash-invariants.md` first.** 12 product-specific rules (INV-1…INV-12)
+  that outrank `ecc/rules/` on conflict. ECC has no coverage of this domain.
 - Engineering rules live in `ecc/rules/`, vendored from ECC v2.2.1. Attribution in
   `ecc/NOTICE.md`.
+- Phase 1 MVP plan: `docs/implementation-plan.md`. Blocked on an unresolved stack
+  decision (spec mandates Python-first; a TS/Node backend was also proposed).
 - Always apply `ecc/rules/common/*`. Apply `ecc/rules/typescript/` for TS/JS/Node and
   `ecc/rules/python/` for Python.
 - The ECC *plugin* is not installed here, so the named ECC agents (planner,

@@ -11,9 +11,32 @@ Read this file before writing code.
 | `Ui.txt` | 724-line HTML/CSS UI concept, "WiseCash — UI Concept". Design tokens: sage `#F3F6F0`, teal `#0F5C56`, marigold `#F2A93B`, coral `#E8654A`. Fonts: Sora, Inter, IBM Plex Mono |
 | `WiseCash_Social_Commerce_Spec.pdf` | Product spec, 10 pages. **The source of truth for product scope.** Not yet parsed into text — extract and read it before making product decisions |
 | `ecc/` | Vendored ECC rule packs (see below) |
+| `docs/implementation-plan.md` | Phase 1 MVP plan — 18 steps, 5 mergeable phases |
+| `docs/wisecash-invariants.md` | **12 product invariants (INV-1…INV-12). Outranks `ecc/rules/`** |
 
-No application source code exists yet. Stack is **TypeScript / Node.js** with **Python**
-also in scope.
+No application source code exists yet.
+
+**Stack is unresolved and blocks implementation.** The spec mandates a Python-first
+backend (FastAPI + Celery + PostgreSQL + Redis, Flutter client — spec §5), which
+conflicts with a TypeScript/Node backend. `docs/implementation-plan.md` plans against
+the hybrid reading of spec §5.2: Python backend, TypeScript only in `web/`. Resolve
+this before plan step 6.
+
+## Project invariants — read these first
+
+[`docs/wisecash-invariants.md`](./docs/wisecash-invariants.md) holds 12 non-negotiable
+rules specific to this product (INV-1 … INV-12): phone/username privacy, OTP as trust
+root, mutual-approval chat, integer money, ClickPesa idempotency, atomic stock
+decrement, username homoglyphs, dashboard owner-scoping, chat/log separation, AI never
+moves money, Swahili-first.
+
+**These outrank `ecc/rules/` on conflict.** ECC has zero coverage of this domain —
+verified by grep, no hits for `mobile money`, `invoice`, `websocket`, `chat`,
+`commerce`, `fraud`, `idempotency`, `oversell`, or `homoglyph`.
+
+If a change touches a path listed under an invariant but does not touch that
+invariant's assertion, ask why. Each invariant carries a testable assertion — the
+assertion is the rule; the prose is only the explanation.
 
 ## Rule packs
 
@@ -76,3 +99,6 @@ wrong output is not a pass.
 
 Then confirm the `ecc/rules/common/security.md` pre-commit checklist: no hardcoded
 secrets, inputs validated, injection prevented, error messages not leaking internals.
+
+If the change touches money, auth, chat, or inventory, also work through the 13-item
+pre-commit gate in [`docs/wisecash-invariants.md`](./docs/wisecash-invariants.md).
