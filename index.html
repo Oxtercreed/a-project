@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0b0810" />
+  <meta name="description" content="ShowGo helps you find the live music moments you will talk about tomorrow." />
+  <title>ShowGo — Find your next live moment</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="page-noise" aria-hidden="true"></div>
+  <div class="site-shell">
+    <header class="topbar" id="topbar">
+      <a class="brand" href="#top" aria-label="ShowGo home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 32 32" fill="none">
+            <path d="M5 17.5C8.2 17.5 8.2 10 11.4 10s3.2 12 6.4 12S21 7 24.2 7 26.8 14.5 29 14.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" />
+            <path d="M5 23c3.2 0 3.2-5 6.4-5s3.2 7 6.4 7 3.2-9.5 6.4-9.5 2.6 3.5 4.8 3.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" opacity=".56" />
+          </svg>
+        </span>
+        <span class="brand-name">show<span>go</span></span>
+      </a>
+
+      <nav class="main-nav" id="main-nav" aria-label="Primary navigation">
+        <a class="nav-link is-active" href="#events">Discover</a>
+        <a class="nav-link" href="#trending">Trending</a>
+        <a class="nav-link" href="#calendar">Calendar</a>
+        <a class="nav-link" href="#community">Community</a>
+      </nav>
+
+      <div class="topbar-actions">
+        <button class="location-pill" type="button" id="location-toggle" aria-label="Change location">
+          <span class="location-dot" aria-hidden="true"></span>
+          <span>New York, NY</span>
+          <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m4 6 4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg>
+        </button>
+        <button class="icon-button search-toggle" type="button" aria-label="Search events" aria-expanded="false" aria-controls="quick-search">
+          <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="8.7" cy="8.7" r="5.2" stroke="currentColor" stroke-width="1.6" /><path d="m12.6 12.6 4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" /></svg>
+        </button>
+        <button class="profile-chip" type="button" aria-label="Open profile">
+          <span>JC</span>
+          <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m4 6 4 4 4-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" /></svg>
+        </button>
+        <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="main-nav">
+          <span></span><span></span>
+        </button>
+      </div>
+    </header>
+
+    <div class="quick-search" id="quick-search" aria-hidden="true">
+      <label for="quick-search-input">Search ShowGo</label>
+      <div class="quick-search-field">
+        <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="8.7" cy="8.7" r="5.2" stroke="currentColor" stroke-width="1.6" /><path d="m12.6 12.6 4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" /></svg>
+        <input id="quick-search-input" type="search" placeholder="Search artists, venues, or events" autocomplete="off" />
+        <kbd>ESC</kbd>
+      </div>
+    </div>
+
+    <main>
+      <section class="hero" id="top" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow"><span class="eyebrow-pulse" aria-hidden="true"></span> Live music, in your frequency</p>
+          <h1 id="hero-title">Discover <em>music</em><br />events.</h1>
+          <p class="hero-description">The best nights are still ahead. Find the artists, rooms, and people that make a city feel alive.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#events" id="join-button">
+              <span>Join the movement</span>
+              <span class="button-icon" aria-hidden="true"><svg viewBox="0 0 18 18" fill="none"><path d="M3.5 9h10M9.5 4.5 14 9l-4.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg></span>
+            </a>
+            <a class="text-link" href="#events">Browse events <span aria-hidden="true">↗</span></a>
+          </div>
+          <div class="hero-proof" aria-label="ShowGo community stats">
+            <div class="avatar-stack" aria-hidden="true">
+              <span class="avatar avatar-one">A</span>
+              <span class="avatar avatar-two">K</span>
+              <span class="avatar avatar-three">M</span>
+              <span class="avatar avatar-four">+</span>
+            </div>
+            <span><strong>18k+</strong> people finding their next show</span>
+          </div>
+        </div>
+
+        <div class="hero-stage" aria-label="ShowGo live signal preview">
+          <div class="stage-orbit orbit-one" aria-hidden="true"></div>
+          <div class="stage-orbit orbit-two" aria-hidden="true"></div>
+          <div class="stage-glow glow-purple" aria-hidden="true"></div>
+          <div class="stage-glow glow-peach" aria-hidden="true"></div>
+
+          <div class="signal-panel">
+            <div class="signal-panel-top">
+              <span class="live-indicator"><i></i> SHOWGO SIGNAL</span>
+              <span class="signal-time">LIVE / 09:41</span>
+            </div>
+            <div class="signal-copy">
+              <span class="signal-kicker">Turn it up</span>
+              <strong>Find your<br /><span>frequency.</span></strong>
+            </div>
+            <div class="waveform" aria-hidden="true">
+              <span style="--h: 22%; --d: -0.05s"></span><span style="--h: 39%; --d: -0.32s"></span><span style="--h: 62%; --d: -0.18s"></span><span style="--h: 34%; --d: -0.52s"></span><span style="--h: 83%; --d: -0.27s"></span><span style="--h: 48%; --d: -0.68s"></span><span style="--h: 68%; --d: -0.11s"></span><span style="--h: 94%; --d: -0.45s"></span><span style="--h: 55%; --d: -0.74s"></span><span style="--h: 31%; --d: -0.22s"></span><span style="--h: 74%; --d: -0.57s"></span><span style="--h: 45%; --d: -0.4s"></span><span style="--h: 88%; --d: -0.08s"></span><span style="--h: 63%; --d: -0.63s"></span><span style="--h: 29%; --d: -0.34s"></span><span style="--h: 53%; --d: -0.7s"></span><span style="--h: 79%; --d: -0.16s"></span><span style="--h: 41%; --d: -0.51s"></span><span style="--h: 67%; --d: -0.29s"></span><span style="--h: 26%; --d: -0.62s"></span><span style="--h: 58%; --d: -0.2s"></span><span style="--h: 91%; --d: -0.43s"></span><span style="--h: 44%; --d: -0.76s"></span><span style="--h: 72%; --d: -0.1s"></span><span style="--h: 35%; --d: -0.37s"></span><span style="--h: 61%; --d: -0.58s"></span><span style="--h: 47%; --d: -0.23s"></span><span style="--h: 82%; --d: -0.66s"></span><span style="--h: 32%; --d: -0.31s"></span><span style="--h: 69%; --d: -0.49s"></span><span style="--h: 42%; --d: -0.14s"></span><span style="--h: 56%; --d: -0.71s"></span>
+            </div>
+            <div class="signal-panel-bottom">
+              <span>Curated for right now</span>
+              <span class="signal-arrow" aria-hidden="true">↗</span>
+            </div>
+          </div>
+
+          <div class="hero-event-preview">
+            <div class="preview-image">
+              <img src="assets/echoes-after-dark.jpg" alt="Crowd with hands raised at a concert" fetchpriority="high" />
+              <span class="preview-image-shade"></span>
+              <span class="preview-live-tag"><i></i> HAPPENING SOON</span>
+            </div>
+            <div class="preview-details">
+              <div class="preview-heading"><span>FRI / SEP 19</span><span class="preview-save" aria-hidden="true">♡</span></div>
+              <h2>Echoes After Dark</h2>
+              <p><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 14s4.5-4.1 4.5-7.8A4.5 4.5 0 0 0 3.5 6.2C3.5 9.9 8 14 8 14Z" stroke="currentColor" stroke-width="1.2" /><circle cx="8" cy="6.2" r="1.5" stroke="currentColor" stroke-width="1.2" /></svg> Elsewhere, Brooklyn</p>
+            </div>
+          </div>
+
+          <div class="floating-note note-top"><span class="note-icon">✦</span><span><strong>24</strong><small>new near you</small></span></div>
+          <div class="floating-note note-bottom"><span class="mini-wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span><span>sound on</span></div>
+        </div>
+      </section>
+
+      <section class="signal-strip" id="trending" aria-label="ShowGo values">
+        <div class="strip-track">
+          <span>THE NIGHT IS YOURS</span><b>✦</b><span>FIND YOUR FREQUENCY</span><b>✦</b><span>MAKE SOME NOISE</span><b>✦</b><span>THE NIGHT IS YOURS</span><b>✦</b><span>FIND YOUR FREQUENCY</span><b>✦</b><span>MAKE SOME NOISE</span><b>✦</b>
+        </div>
+      </section>
+
+      <section class="events-section" id="events" aria-labelledby="events-title">
+        <div class="section-heading reveal">
+          <div>
+            <p class="section-kicker">CURATED FOR YOU <span></span> 04.28</p>
+            <h2 id="events-title">Your next live<br /><em>moment.</em></h2>
+          </div>
+          <div class="heading-aside">
+            <p>Hand-picked events for the city that never<br class="desktop-break" /> stops moving.</p>
+            <a href="#events" class="underlined-link">View all events <span aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+
+        <div class="event-toolbar reveal" id="calendar">
+          <div class="filter-tabs" role="tablist" aria-label="Filter events by category">
+            <button class="filter-tab is-active" type="button" role="tab" aria-selected="true" data-filter="all">All events <span>24</span></button>
+            <button class="filter-tab" type="button" role="tab" aria-selected="false" data-filter="electronic">Electronic <span>08</span></button>
+            <button class="filter-tab" type="button" role="tab" aria-selected="false" data-filter="indie">Indie <span>06</span></button>
+            <button class="filter-tab" type="button" role="tab" aria-selected="false" data-filter="hip-hop">Hip-hop <span>05</span></button>
+          </div>
+          <label class="event-search" for="event-search-input">
+            <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="8.7" cy="8.7" r="5.2" stroke="currentColor" stroke-width="1.6" /><path d="m12.6 12.6 4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" /></svg>
+            <input id="event-search-input" type="search" placeholder="Search events" autocomplete="off" />
+          </label>
+        </div>
+
+        <div class="event-list" id="event-list">
+          <article class="event-card reveal" data-category="electronic" data-search="echoes after dark electronic elsewhere brooklyn live dj bass" style="--reveal-delay: .05s">
+            <div class="event-image">
+              <img src="assets/echoes-after-dark.jpg" alt="Colorful lights over a crowd at a live concert" loading="lazy" />
+              <div class="image-gradient" aria-hidden="true"></div>
+              <span class="image-category">ELECTRONIC</span>
+              <button class="save-button" type="button" aria-label="Save Echoes After Dark" aria-pressed="false"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M15.7 7.4c0 4.2-5.7 7.4-5.7 7.4s-5.7-3.2-5.7-7.4A3.1 3.1 0 0 1 10 5.6a3.1 3.1 0 0 1 5.7 1.8Z" stroke="currentColor" stroke-width="1.45" stroke-linejoin="round" /></svg></button>
+            </div>
+            <div class="event-content">
+              <div class="event-topline"><span class="event-index">01 / 04</span><span class="event-status"><i></i> 18 spots left</span></div>
+              <h3>Echoes After Dark</h3>
+              <p class="event-description">A late-night collision of warm bass, hazy synths, and the city’s best selectors.</p>
+              <dl class="event-details">
+                <div><dt><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 3.5h10v9H3zM5.5 2v3M10.5 2v3M3 6h10" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round" /></svg>DATE</dt><dd>Sat, Sep 19</dd></div>
+                <div><dt><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="5.5" stroke="currentColor" stroke-width="1.15" /><path d="M8 4.5V8l2.5 1.5" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" /></svg>TIME</dt><dd>9:00 PM – 2:00 AM</dd></div>
+                <div><dt><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 14s4.5-4.1 4.5-7.8A4.5 4.5 0 0 0 3.5 6.2C3.5 9.9 8 14 8 14Z" stroke="currentColor" stroke-width="1.15" /><circle cx="8" cy="6.2" r="1.5" stroke="currentColor" stroke-width="1.15" /></svg>LOCATION</dt><dd>Brooklyn, NY</dd></div>
+                <div><dt><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 13V5.5L8 3l5 2.5V13M5 13V9h6v4M6 6.2h.01M10 6.2h.01" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round" /></svg>VENUE</dt><dd>Elsewhere Hall</dd></div>
+              </dl>
+              <div class="event-footer"><span class="event-host"><span class="host-avatar host-purple">E</span> hosted by <strong>Elsewhere</strong></span><button class="card-arrow" type="button" aria-label="Open Echoes After Dark"><svg viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M3.5 9h10M9.5 4.5 14 9l-4.5 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg></button></div>
+            </div>
+          </article>
+
+          <article class="event-card reveal" data-category="indie" data-search="luna satellites indie pop bowery ballroom manhattan live band" style="--reveal-delay: .12s">
+            <div class="event-image">
+              <img src="assets/luna-satellites.jpg" alt="Singer performing under purple stage lights" loading="lazy" />
+              <div class="image-gradient" aria-hidden="true"></div>
+              <span class="image-category">INDIE POP</span>
+              <button class="save-button" type="button" aria-label="Save Luna and the Satellites" aria-pressed="false"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M15.7 7.4c0 4.2-5.7 7.4-5.7 7.4s-5.7-3.2-5.7-7.4A3.1 3.1 0 0 1 10 5.6a3.1 3.1 0 0 1 5.7 1.8Z" stroke="currentColor" stroke-width="1.45" stroke-linejoin="round" /></svg></button>
+            </div>
+            <div class="event-content">
+              <div class="event-topline"><span class="event-index">02 / 04</span><span class="event-status event-status-muted"><i></i> Selling fast</span></div>
+              <h3>Luna &amp; the Satellites</h3>
+              <p class="event-description">Dream-pop for people who like their heartache cinematic and their choruses huge.</p>
+              <dl class="event-details">
+                <div><dt><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 3.5h10v9H3zM5.5 2v3M10.5 2v3M3 6h10" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round" /></svg>DATE</dt><dd>Sun, Sep 20</dd></div>
+                <div><dt><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="5.5" stroke="currentColor" stroke-width="1.15" /><path d="M8 4.5V8l2.5 1.5" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" /></svg>TIME</dt><dd>8:00 PM – 11:30 PM</dd></div>
+                <div><dt><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 14s4.5-4.1 4.5-7.8A4.5 4.5 0 0 0 3.5 6.2C3.5 9.9 8 14 8 14Z" stroke="currentColor" stroke-width="1.15" /><circle cx="8" cy="6.2" r="1.5" stroke="currentColor" stroke-width="1.15" /></svg>LOCATION</dt><dd>Manhattan, NY</dd></div>
+                <div><dt><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 13V5.5L8 3l5 2.5V13M5 13V9h6v4M6 6.2h.01M10 6.2h.01" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round" /></svg>VENUE</dt><dd>Bowery Ballroom</dd></div>
+              </dl>
+              <div class="event-footer"><span class="event-host"><span class="host-avatar host-orange">L</span> hosted by <strong>Live Nation</strong></span><button class="card-arrow" type="button" aria-label="Open Luna and the Satellites"><svg viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M3.5 9h10M9.5 4.5 14 9l-4.5 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg></button></div>
+            </div>
+          </article>
+
+          <article class="event-card reveal" data-category="hip-hop" data-search="neon ritual hip hop alt rap elsewhere brooklyn live" style="--reveal-delay: .19s">
+            <div class="event-image">
+              <img src="assets/neon-ritual.jpg" alt="Performer on a stage with a vivid red spotlight" loading="lazy" />
+              <div class="image-gradient" aria-hidden="true"></div>
+              <span class="image-category">ALT RAP</span>
+              <button class="save-button" type="button" aria-label="Save Neon Ritual" aria-pressed="false"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M15.7 7.4c0 4.2-5.7 7.4-5.7 7.4s-5.7-3.2-5.7-7.4A3.1 3.1 0 0 1 10 5.6a3.1 3.1 0 0 1 5.7 1.8Z" stroke="currentColor" stroke-width="1.45" stroke-linejoin="round" /></svg></button>
+            </div>
+            <div class="event-content">
+              <div class="event-topline"><span class="event-index">03 / 04</span><span class="event-status event-status-muted"><i></i> 42 spots left</span></div>
+              <h3>Neon Ritual</h3>
+              <p class="event-description">A full-sensory live set from the next wave of boundary-pushing NYC artists.</p>
+              <dl class="event-details">
+                <div><dt><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 3.5h10v9H3zM5.5 2v3M10.5 2v3M3 6h10" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round" /></svg>DATE</dt><dd>Thu, Sep 24</dd></div>
+                <div><dt><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="5.5" stroke="currentColor" stroke-width="1.15" /><path d="M8 4.5V8l2.5 1.5" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" /></svg>TIME</dt><dd>7:30 PM – 10:00 PM</dd></div>
+                <div><dt><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 14s4.5-4.1 4.5-7.8A4.5 4.5 0 0 0 3.5 6.2C3.5 9.9 8 14 8 14Z" stroke="currentColor" stroke-width="1.15" /><circle cx="8" cy="6.2" r="1.5" stroke="currentColor" stroke-width="1.15" /></svg>LOCATION</dt><dd>Brooklyn, NY</dd></div>
+                <div><dt><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 13V5.5L8 3l5 2.5V13M5 13V9h6v4M6 6.2h.01M10 6.2h.01" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round" /></svg>VENUE</dt><dd>Brooklyn Steel</dd></div>
+              </dl>
+              <div class="event-footer"><span class="event-host"><span class="host-avatar host-blue">N</span> hosted by <strong>New Colossus</strong></span><button class="card-arrow" type="button" aria-label="Open Neon Ritual"><svg viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M3.5 9h10M9.5 4.5 14 9l-4.5 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg></button></div>
+            </div>
+          </article>
+
+          <article class="event-card reveal" data-category="electronic" data-search="soft focus electronic ambient public records ridgewood queens dj live" style="--reveal-delay: .26s">
+            <div class="event-image">
+              <img src="assets/soft-focus.jpg" alt="DJ playing a set in a dark room with colored lights" loading="lazy" />
+              <div class="image-gradient" aria-hidden="true"></div>
+              <span class="image-category">AMBIENT</span>
+              <button class="save-button" type="button" aria-label="Save Soft Focus" aria-pressed="false"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M15.7 7.4c0 4.2-5.7 7.4-5.7 7.4s-5.7-3.2-5.7-7.4A3.1 3.1 0 0 1 10 5.6a3.1 3.1 0 0 1 5.7 1.8Z" stroke="currentColor" stroke-width="1.45" stroke-linejoin="round" /></svg></button>
+            </div>
+            <div class="event-content">
+              <div class="event-topline"><span class="event-index">04 / 04</span><span class="event-status event-status-muted"><i></i> Just added</span></div>
+              <h3>Soft Focus</h3>
+              <p class="event-description">An intimate room, slow-burning electronics, and a sound system made for getting lost.</p>
+              <dl class="event-details">
+                <div><dt><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 3.5h10v9H3zM5.5 2v3M10.5 2v3M3 6h10" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round" /></svg>DATE</dt><dd>Fri, Sep 25</dd></div>
+                <div><dt><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="5.5" stroke="currentColor" stroke-width="1.15" /><path d="M8 4.5V8l2.5 1.5" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" /></svg>TIME</dt><dd>10:00 PM – 3:00 AM</dd></div>
+                <div><dt><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 14s4.5-4.1 4.5-7.8A4.5 4.5 0 0 0 3.5 6.2C3.5 9.9 8 14 8 14Z" stroke="currentColor" stroke-width="1.15" /><circle cx="8" cy="6.2" r="1.5" stroke="currentColor" stroke-width="1.15" /></svg>LOCATION</dt><dd>Ridgewood, NY</dd></div>
+                <div><dt><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 13V5.5L8 3l5 2.5V13M5 13V9h6v4M6 6.2h.01M10 6.2h.01" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round" /></svg>VENUE</dt><dd>Public Records</dd></div>
+              </dl>
+              <div class="event-footer"><span class="event-host"><span class="host-avatar host-pink">S</span> hosted by <strong>Public Records</strong></span><button class="card-arrow" type="button" aria-label="Open Soft Focus"><svg viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M3.5 9h10M9.5 4.5 14 9l-4.5 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg></button></div>
+            </div>
+          </article>
+        </div>
+        <div class="empty-state" id="empty-state" hidden>
+          <span>∅</span>
+          <h3>No signal found.</h3>
+          <p>Try another artist, venue, or category.</p>
+        </div>
+        <div class="browse-more reveal"><span class="browse-line"></span><a href="#events" class="button button-quiet" id="browse-more">Load more events <span aria-hidden="true">↓</span></a><span class="browse-line"></span></div>
+      </section>
+
+      <section class="community-section" id="community" aria-labelledby="community-title">
+        <div class="community-card reveal">
+          <div class="community-copy">
+            <p class="section-kicker">BUILT FOR THE CROWD <span></span> 05.12</p>
+            <h2 id="community-title">Go where<br />the <em>energy</em> is.</h2>
+            <p>Save the shows that pull you in. Follow your favorite rooms. Make plans that turn into stories.</p>
+            <a class="button button-primary" href="#events">Explore your city <span class="button-icon" aria-hidden="true"><svg viewBox="0 0 18 18" fill="none"><path d="M3.5 9h10M9.5 4.5 14 9l-4.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg></span></a>
+          </div>
+          <div class="community-art" aria-hidden="true">
+            <div class="art-ring ring-a"></div><div class="art-ring ring-b"></div><div class="art-ring ring-c"></div>
+            <div class="art-core"><span>GO</span><i></i></div>
+            <span class="art-word word-a">DANCE</span><span class="art-word word-b">LOUD</span><span class="art-word word-c">TOGETHER</span>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer" id="footer">
+      <a class="brand footer-brand" href="#top" aria-label="ShowGo home"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none"><path d="M5 17.5C8.2 17.5 8.2 10 11.4 10s3.2 12 6.4 12S21 7 24.2 7 26.8 14.5 29 14.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" /><path d="M5 23c3.2 0 3.2-5 6.4-5s3.2 7 6.4 7 3.2-9.5 6.4-9.5 2.6 3.5 4.8 3.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" opacity=".56" /></svg></span><span class="brand-name">show<span>go</span></span></a>
+      <p>Find the moment. Feel the city.</p>
+      <div class="footer-links"><a href="#events">Discover</a><a href="#community">About</a><a href="#top">Instagram ↗</a><a href="#top">TikTok ↗</a></div>
+      <span class="footer-code">SG / 2026</span>
+    </footer>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="script.js"></script>
+</body>
+</html>
