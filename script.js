@@ -1,144 +1,173 @@
-const topbar = document.querySelector('#topbar');
-const mainNav = document.querySelector('#main-nav');
-const menuToggle = document.querySelector('.menu-toggle');
-const searchToggle = document.querySelector('.search-toggle');
-const quickSearch = document.querySelector('#quick-search');
-const quickSearchInput = document.querySelector('#quick-search-input');
-const eventSearchInput = document.querySelector('#event-search-input');
+const header = document.querySelector('#site-header');
+const nav = document.querySelector('#primary-nav');
+const menuButton = document.querySelector('#menu-button');
+const searchToggle = document.querySelector('#search-toggle');
+const searchDrawer = document.querySelector('#search-drawer');
+const drawerSearch = document.querySelector('#drawer-search');
+const eventSearch = document.querySelector('#event-search');
 const filterTabs = [...document.querySelectorAll('.filter-tab')];
 const eventCards = [...document.querySelectorAll('.event-card')];
 const emptyState = document.querySelector('#empty-state');
+const clearSearch = document.querySelector('#clear-search');
 const toast = document.querySelector('#toast');
 let toastTimer;
 
 function showToast(message) {
+  if (!toast) return;
   toast.textContent = message;
   toast.classList.add('is-visible');
   window.clearTimeout(toastTimer);
-  toastTimer = window.setTimeout(() => toast.classList.remove('is-visible'), 3000);
+  toastTimer = window.setTimeout(() => toast.classList.remove('is-visible'), 3200);
 }
 
 function closeMenu() {
-  mainNav?.classList.remove('is-open');
-  menuToggle?.setAttribute('aria-expanded', 'false');
+  nav?.classList.remove('is-open');
+  menuButton?.setAttribute('aria-expanded', 'false');
 }
 
-menuToggle?.addEventListener('click', () => {
-  const isOpen = mainNav.classList.toggle('is-open');
-  menuToggle.setAttribute('aria-expanded', String(isOpen));
+function closeSearch() {
+  searchDrawer?.classList.remove('is-open');
+  searchDrawer?.setAttribute('aria-hidden', 'true');
+  searchToggle?.setAttribute('aria-expanded', 'false');
+}
+
+menuButton?.addEventListener('click', () => {
+  const open = nav.classList.toggle('is-open');
+  menuButton.setAttribute('aria-expanded', String(open));
+  if (open) closeSearch();
 });
 
-document.querySelectorAll('.nav-link').forEach((link) => {
-  link.addEventListener('click', () => {
-    document.querySelectorAll('.nav-link').forEach((item) => item.classList.remove('is-active'));
-    link.classList.add('is-active');
+searchToggle?.addEventListener('click', () => {
+  const open = searchDrawer.classList.toggle('is-open');
+  searchDrawer.setAttribute('aria-hidden', String(!open));
+  searchToggle.setAttribute('aria-expanded', String(open));
+  if (open) {
+    closeMenu();
+    window.setTimeout(() => drawerSearch?.focus(), 100);
+  }
+});
+
+document.querySelectorAll('.nav-item').forEach((item) => {
+  item.addEventListener('click', () => {
+    document.querySelectorAll('.nav-item').forEach((navItem) => navItem.classList.remove('is-active'));
+    item.classList.add('is-active');
     closeMenu();
   });
 });
 
-function closeQuickSearch() {
-  quickSearch?.classList.remove('is-open');
-  quickSearch?.setAttribute('aria-hidden', 'true');
-  searchToggle?.setAttribute('aria-expanded', 'false');
-}
-
-searchToggle?.addEventListener('click', () => {
-  const isOpen = quickSearch.classList.toggle('is-open');
-  quickSearch.setAttribute('aria-hidden', String(!isOpen));
-  searchToggle.setAttribute('aria-expanded', String(isOpen));
-  if (isOpen) {
-    window.setTimeout(() => quickSearchInput?.focus(), 100);
-  }
-});
-
-quickSearchInput?.addEventListener('input', () => {
-  if (eventSearchInput) eventSearchInput.value = quickSearchInput.value;
-  applyFilters();
+document.addEventListener('click', (event) => {
+  const target = event.target;
+  if (nav?.classList.contains('is-open') && !nav.contains(target) && !menuButton?.contains(target)) closeMenu();
+  if (searchDrawer?.classList.contains('is-open') && !searchDrawer.contains(target) && !searchToggle?.contains(target)) closeSearch();
 });
 
 document.addEventListener('keydown', (event) => {
   if (event.key === 'Escape') {
-    closeQuickSearch();
     closeMenu();
+    closeSearch();
   }
 });
 
 function applyFilters() {
   const activeFilter = document.querySelector('.filter-tab.is-active')?.dataset.filter || 'all';
-  const query = (eventSearchInput?.value || '').trim().toLowerCase();
+  const query = (eventSearch?.value || '').trim().toLowerCase();
   let visibleCount = 0;
 
   eventCards.forEach((card) => {
     const categoryMatches = activeFilter === 'all' || card.dataset.category === activeFilter;
-    const searchMatches = !query || (card.dataset.search || '').includes(query);
-    const shouldShow = categoryMatches && searchMatches;
-    card.hidden = !shouldShow;
-    if (shouldShow) visibleCount += 1;
+    const queryMatches = !query || (card.dataset.search || '').toLowerCase().includes(query);
+    const visible = categoryMatches && queryMatches;
+    card.hidden = !visible;
+    if (visible) visibleCount += 1;
   });
 
-  if (emptyState) emptyState.hidden = visibleCount !== 0;
+  if (emptyState) emptyState.hidden = visibleCount > 0;
 }
 
 filterTabs.forEach((tab) => {
   tab.addEventListener('click', () => {
     filterTabs.forEach((item) => {
-      const isActive = item === tab;
-      item.classList.toggle('is-active', isActive);
-      item.setAttribute('aria-selected', String(isActive));
+      const active = item === tab;
+      item.classList.toggle('is-active', active);
+      item.setAttribute('aria-selected', String(active));
     });
     applyFilters();
   });
 });
 
-eventSearchInput?.addEventListener('input', () => {
-  if (quickSearchInput) quickSearchInput.value = eventSearchInput.value;
+function syncSearch(value) {
+  if (eventSearch && eventSearch.value !== value) eventSearch.value = value;
+  if (drawerSearch && drawerSearch.value !== value) drawerSearch.value = value;
   applyFilters();
+}
+
+drawerSearch?.addEventListener('input', () => syncSearch(drawerSearch.value));
+eventSearch?.addEventListener('input', () => syncSearch(eventSearch.value));
+
+clearSearch?.addEventListener('click', () => {
+  syncSearch('');
+  document.querySelector('[data-filter="all"]')?.click();
+  eventSearch?.focus();
 });
 
 document.querySelectorAll('.save-button').forEach((button) => {
   button.addEventListener('click', () => {
     const saved = button.classList.toggle('is-saved');
     button.setAttribute('aria-pressed', String(saved));
-    const eventName = button.getAttribute('aria-label')?.replace(/^Save /, '') || 'event';
-    showToast(saved ? `${eventName} saved to your shows.` : `${eventName} removed from your shows.`);
+    const name = button.getAttribute('aria-label')?.replace(/^Save /, '') || 'Event';
+    showToast(saved ? `${name} saved to your shows.` : `${name} removed from your shows.`);
   });
 });
 
-document.querySelectorAll('.card-arrow').forEach((button) => {
+document.querySelectorAll('.open-event').forEach((button) => {
   button.addEventListener('click', () => {
-    const eventName = button.getAttribute('aria-label')?.replace(/^Open /, '') || 'This event';
-    showToast(`${eventName} details are coming right up.`);
+    const name = button.getAttribute('aria-label')?.replace(/^Open /, '') || 'Event';
+    showToast(`${name} details are ready for your next plan.`);
   });
 });
 
-document.querySelector('#location-toggle')?.addEventListener('click', () => {
+document.querySelector('#location-button')?.addEventListener('click', () => {
   showToast('Location set to New York, NY. Showing your nearby signal.');
 });
 
-document.querySelector('.profile-chip')?.addEventListener('click', () => {
+document.querySelector('.profile-button')?.addEventListener('click', () => {
   showToast('Your profile is ready for saved shows and new plans.');
 });
 
-document.querySelector('#join-button')?.addEventListener('click', (event) => {
+document.querySelector('#hero-cta')?.addEventListener('click', (event) => {
   event.preventDefault();
   document.querySelector('#events')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  showToast('You are in. Let’s find your next live moment.');
 });
 
-document.querySelector('.browse-more a')?.addEventListener('click', (event) => {
-  event.preventDefault();
+document.querySelector('#lucky-button')?.addEventListener('click', () => {
+  const visibleCards = eventCards.filter((card) => !card.hidden);
+  if (!visibleCards.length) {
+    showToast('No signal found. Clear the filters and try again.');
+    return;
+  }
+  const chosen = visibleCards[Math.floor(Math.random() * visibleCards.length)];
+  chosen.classList.remove('is-lucky');
+  void chosen.offsetWidth;
+  chosen.classList.add('is-lucky');
+  chosen.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  const name = chosen.querySelector('h3')?.textContent || 'Your next show';
+  showToast(`${name} is calling. See you there.`);
+});
+
+document.querySelector('#load-more')?.addEventListener('click', () => {
   showToast('More events are syncing into your frequency.');
 });
 
-document.querySelector('.view-all-events')?.addEventListener('click', (event) => {
-  event.preventDefault();
-  showToast('You are already looking at this week’s signal.');
+document.querySelectorAll('.calendar-row button').forEach((button) => {
+  button.addEventListener('click', () => {
+    document.querySelectorAll('.calendar-row button').forEach((day) => day.classList.remove('is-today'));
+    button.classList.add('is-today');
+    showToast(`${button.getAttribute('aria-label')?.replace(', selected', '') || 'Date'} selected.`);
+  });
 });
 
 document.querySelectorAll('img').forEach((image) => {
-  image.addEventListener('error', () => {
-    image.parentElement?.classList.add('image-fallback');
-  });
+  image.addEventListener('error', () => image.parentElement?.classList.add('image-fallback'));
 });
 
 const revealItems = document.querySelectorAll('.reveal');
@@ -150,16 +179,16 @@ if ('IntersectionObserver' in window) {
         currentObserver.unobserve(entry.target);
       }
     });
-  }, { threshold: .12, rootMargin: '0px 0px -30px' });
+  }, { threshold: .12, rootMargin: '0px 0px -28px' });
   revealItems.forEach((item) => observer.observe(item));
 } else {
   revealItems.forEach((item) => item.classList.add('is-visible'));
 }
 
-function updateTopbar() {
-  topbar?.classList.toggle('is-scrolled', window.scrollY > 12);
+function updateHeader() {
+  header?.classList.toggle('is-scrolled', window.scrollY > 12);
 }
 
-window.addEventListener('scroll', updateTopbar, { passive: true });
-updateTopbar();
+window.addEventListener('scroll', updateHeader, { passive: true });
+updateHeader();
 applyFilters();
