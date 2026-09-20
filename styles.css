@@ -651,6 +651,40 @@ kbd {
   color: var(--color-muted-foreground);
 }
 
+.hero-compare-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 19px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid rgba(189, 255, 110, .3);
+  color: var(--color-muted-foreground);
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: .03em;
+  transition: color var(--motion-fast) ease, gap var(--motion-fast) ease, border-color var(--motion-fast) ease;
+}
+
+.hero-compare-link:hover {
+  gap: 11px;
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.hero-compare-link span {
+  display: grid;
+  width: 18px;
+  height: 18px;
+  place-items: center;
+  border: 1px solid rgba(189, 255, 110, .3);
+  border-radius: 50%;
+  color: var(--color-accent);
+}
+
+.hero-compare-link svg {
+  width: 11px;
+}
+
 .avatar-stack,
 .metric-avatars {
   display: flex;
