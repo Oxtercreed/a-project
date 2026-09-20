@@ -126,6 +126,14 @@ document.querySelectorAll('.open-event').forEach((button) => {
   });
 });
 
+document.querySelectorAll('.built-save-button').forEach((button) => {
+  button.addEventListener('click', () => {
+    const saved = button.classList.toggle('is-saved');
+    button.setAttribute('aria-pressed', String(saved));
+    showToast(saved ? 'Preview event saved to your shows.' : 'Preview event removed from your shows.');
+  });
+});
+
 document.querySelector('#location-button')?.addEventListener('click', () => {
   showToast('Location set to New York, NY. Showing your nearby signal.');
 });
