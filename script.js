@@ -10,6 +10,9 @@ const eventCards = [...document.querySelectorAll('.event-card')];
 const emptyState = document.querySelector('#empty-state');
 const clearSearch = document.querySelector('#clear-search');
 const toast = document.querySelector('#toast');
+const modeButtons = [...document.querySelectorAll('.mode-button')];
+const systemView = document.querySelector('#system-view');
+const rawView = document.querySelector('#raw-view');
 let toastTimer;
 
 function showToast(message) {
@@ -30,6 +33,50 @@ function closeSearch() {
   searchDrawer?.setAttribute('aria-hidden', 'true');
   searchToggle?.setAttribute('aria-expanded', 'false');
 }
+
+const rawLinkMap = {
+  '#top': '#raw-top',
+  '#events': '#raw-events',
+  '#venues': '#raw-events',
+  '#community': '#raw-community'
+};
+
+function updateViewLinks(showSystem) {
+  document.querySelectorAll('a[href]').forEach((link) => {
+    if (!link.dataset.systemHref) link.dataset.systemHref = link.getAttribute('href') || '';
+    const systemHref = link.dataset.systemHref;
+    const rawHref = rawLinkMap[systemHref];
+    if (showSystem || !rawHref) link.setAttribute('href', systemHref);
+    else link.setAttribute('href', rawHref);
+  });
+}
+
+function setExperience(mode, announce = true) {
+  const showSystem = mode !== 'raw';
+  if (systemView) systemView.hidden = !showSystem;
+  if (rawView) rawView.hidden = showSystem;
+  modeButtons.forEach((button) => {
+    const active = button.dataset.view === mode;
+    button.classList.toggle('is-active', active);
+    button.setAttribute('aria-pressed', String(active));
+  });
+  document.body.dataset.experience = showSystem ? 'system' : 'raw';
+  updateViewLinks(showSystem);
+  closeMenu();
+  closeSearch();
+  if (announce) {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    showToast(showSystem ? 'ShowGo system view enabled.' : 'Raw draft view enabled.');
+  }
+}
+
+modeButtons.forEach((button) => {
+  button.addEventListener('click', () => setExperience(button.dataset.view));
+});
+
+document.querySelectorAll('[data-view-trigger]').forEach((trigger) => {
+  trigger.addEventListener('click', () => setExperience(trigger.dataset.viewTrigger));
+});
 
 menuButton?.addEventListener('click', () => {
   const open = nav.classList.toggle('is-open');
@@ -126,14 +173,6 @@ document.querySelectorAll('.open-event').forEach((button) => {
   });
 });
 
-document.querySelectorAll('.built-save-button').forEach((button) => {
-  button.addEventListener('click', () => {
-    const saved = button.classList.toggle('is-saved');
-    button.setAttribute('aria-pressed', String(saved));
-    showToast(saved ? 'Preview event saved to your shows.' : 'Preview event removed from your shows.');
-  });
-});
-
 document.querySelector('#location-button')?.addEventListener('click', () => {
   showToast('Location set to New York, NY. Showing your nearby signal.');
 });
@@ -164,6 +203,10 @@ document.querySelector('#lucky-button')?.addEventListener('click', () => {
 
 document.querySelector('#load-more')?.addEventListener('click', () => {
   showToast('More events are syncing into your frequency.');
+});
+
+document.querySelectorAll('.experience-raw .raw-event-card button, .experience-raw .raw-primary-action, .experience-raw .raw-draft-nav button').forEach((button) => {
+  button.addEventListener('click', () => showToast('This draft action is ready to be shaped by the system.'));
 });
 
 document.querySelectorAll('.calendar-row button').forEach((button) => {
@@ -200,3 +243,4 @@ function updateHeader() {
 window.addEventListener('scroll', updateHeader, { passive: true });
 updateHeader();
 applyFilters();
+setExperience('system', false);

@@ -36,8 +36,8 @@ These page rules intentionally override the generated Master recommendation wher
 - Hero: two-column desktop composition; stack the copy before the visual on small screens.
 - Content max-width: 1240px with 24px mobile gutters and 48px desktop gutters.
 - Main feed: event cards remain image-left on desktop and mobile; preserve essential event metadata without relying on hover.
-- Section order: hero > motion/ribbon > curated event feed > skill comparison > community proof > final CTA/footer.
-- Comparison section: Use two labeled panels side by side on desktop and stack them on mobile. The "without system" panel should be clearly framed as a critique, not a usable product path; the "with ShowGo system" panel should demonstrate hierarchy, semantic metadata, responsive behavior, and accessible controls.
+- Section order: hero > motion/ribbon > curated event feed > community proof > final CTA/footer.
+- Include a persistent, keyboard-operable mode switch near the top that toggles between the polished "With system" experience and a separate full-page "Without system" early draft. Expose the selected state with `aria-pressed`, preserve the same content in both views, and stack both views cleanly on mobile.
 - Breakpoints: verify at 375px, 768px, 1024px, and 1440px. Never introduce horizontal page scrolling.
 
 ## Type

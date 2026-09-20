@@ -17,7 +17,7 @@
 
   <div class="site-shell">
     <header class="site-header" id="site-header">
-      <a class="brand" href="#top" aria-label="ShowGo home">
+      <a class="brand" href="#mode-bar" aria-label="ShowGo home">
         <span class="brand-mark" aria-hidden="true">
           <svg viewBox="0 0 36 36" fill="none">
             <path d="M4 19c3.5 0 3.5-8 7-8s3.5 13 7 13 3.5-16 7-16 3 8 7 8" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" />
@@ -28,10 +28,9 @@
       </a>
 
       <nav class="primary-nav" id="primary-nav" aria-label="Primary navigation">
-        <a class="nav-item is-active" href="#discover">Discover</a>
+        <a class="nav-item is-active" href="#top">Discover</a>
         <a class="nav-item" href="#events">Live feed</a>
         <a class="nav-item" href="#venues">Venues</a>
-        <a class="nav-item" href="#skill-difference">Compare</a>
         <a class="nav-item" href="#community">Community</a>
       </nav>
 
@@ -60,7 +59,16 @@
       </div>
     </div>
 
+    <div class="mode-bar" id="mode-bar">
+      <div class="mode-bar-copy"><span class="mode-kicker">SHOWGO / UI STUDY</span><strong>Preview the design process</strong></div>
+      <div class="mode-switch" role="group" aria-label="Choose landing page version">
+        <button class="mode-button is-active" type="button" data-view="system" aria-pressed="true"><i class="mode-dot mode-dot-built" aria-hidden="true"></i> With system</button>
+        <button class="mode-button" type="button" data-view="raw" aria-pressed="false"><i class="mode-dot mode-dot-raw" aria-hidden="true"></i> Without system</button>
+      </div>
+    </div>
+
     <main id="main-content">
+      <div class="experience-view experience-system is-active" id="system-view">
       <section class="hero" id="top" aria-labelledby="hero-title">
         <div class="hero-copy">
           <p class="eyebrow"><span class="eyebrow-line" aria-hidden="true"></span> 01 / YOUR CITY IS PLAYING</p>
@@ -77,7 +85,7 @@
             <div class="avatar-stack" aria-hidden="true"><span class="avatar avatar-a">M</span><span class="avatar avatar-b">A</span><span class="avatar avatar-c">K</span><span class="avatar avatar-more">+</span></div>
             <p><strong>18k+</strong> people are finding their next show</p>
           </div>
-          <a class="hero-compare-link" href="#skill-difference"><span aria-hidden="true"><svg viewBox="0 0 16 16" fill="none"><path d="M3 4.5v8h8M7.5 8H13V2.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" /></svg></span> See the difference a system makes</a>
+          <button class="hero-compare-link" type="button" data-view-trigger="raw"><span aria-hidden="true"><svg viewBox="0 0 16 16" fill="none"><path d="M3 4.5v8h8M7.5 8H13V2.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" /></svg></span> View the raw draft</button>
         </div>
 
         <div class="hero-art" aria-label="A live signal preview for ShowGo">
@@ -174,41 +182,8 @@
         <div class="feed-bottom reveal"><span></span><button class="button button-quiet" id="load-more" type="button">Load more events <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 3v10M4 9l4 4 4-4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" /></svg></button><span></span></div>
       </section>
 
-      <section class="comparison-section" id="skill-difference" aria-labelledby="comparison-title">
-        <div class="comparison-intro reveal">
-          <div>
-            <p class="eyebrow"><span class="eyebrow-line" aria-hidden="true"></span> 03 / THE DESIGN SIGNAL</p>
-            <h2 id="comparison-title">Same brief.<br /><em>Different outcome.</em></h2>
-          </div>
-          <div class="comparison-intro-copy"><p>A side-by-side look at what a real design system changes: hierarchy, contrast, motion, and the confidence to make a plan.</p><span class="comparison-key"><i class="key-dot key-raw"></i> Without a system <i class="key-dot key-built"></i> With ShowGo system</span></div>
-        </div>
-
-        <div class="comparison-board">
-          <article class="compare-panel compare-panel-raw reveal" style="--reveal-delay: .04s">
-            <header class="compare-panel-header"><span class="compare-label"><i class="compare-status raw-status"></i> WITHOUT UI/UX SYSTEM</span><span class="compare-code">01 / RAW DRAFT</span></header>
-            <div class="raw-preview" aria-label="Example of an unstructured music event page">
-              <div class="raw-toolbar"><strong>SHOWGO</strong><span>menu</span></div>
-              <div class="raw-hero"><span class="raw-small-label">EVENTS</span><h3>Find some<br />music events</h3><p>See what’s going on in your city and find something to do tonight.</p><div class="raw-button">SEE EVENTS</div></div>
-              <div class="raw-list"><div class="raw-list-card"><span class="raw-image raw-image-one"></span><span><strong>Live Event</strong><small>Friday · New York</small><em>A great show with music and more...</em></span></div><div class="raw-list-card"><span class="raw-image raw-image-two"></span><span><strong>Music Night</strong><small>Saturday · Brooklyn</small><em>Join us for an unforgettable evening.</em></span></div></div>
-            </div>
-            <div class="compare-notes raw-notes"><div><span class="note-number">01</span><p><strong>Flat hierarchy</strong><small>Every action competes for attention.</small></p></div><div><span class="note-number">02</span><p><strong>Unclear next step</strong><small>The CTA is generic and easy to miss.</small></p></div><div><span class="note-number">03</span><p><strong>No feedback states</strong><small>Nothing explains what happens after a click.</small></p></div></div>
-          </article>
-
-          <article class="compare-panel compare-panel-built reveal" style="--reveal-delay: .1s">
-            <header class="compare-panel-header"><span class="compare-label"><i class="compare-status built-status"></i> WITH SHOWGO SYSTEM</span><span class="compare-code">02 / PROTOTYPE</span></header>
-            <div class="built-preview" aria-label="Example of the ShowGo event discovery interface">
-              <div class="built-toolbar"><span class="built-brand"><i></i> showgo</span><span class="built-toolbar-actions"><i></i><i></i><b>JD</b></span></div>
-              <div class="built-hero"><span class="built-small-label">CURATED SIGNAL / NYC</span><h3>Find your<br /><em>night.</em></h3><div class="built-cta">EXPLORE EVENTS <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h9M8 3.5 12.5 8 8 12.5" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" /></svg></div></div>
-              <div class="built-event"><div class="built-event-image"><img src="assets/echoes-after-dark.jpg" alt="Concert crowd in the ShowGo comparison preview" width="1360" height="768" loading="lazy" decoding="async" /><span>LIVE / 18 SPOTS</span></div><div class="built-event-copy"><div><span>ELECTRONIC</span><small>SAT / SEP 19</small></div><strong>Echoes After Dark</strong><p>Warm bass, hazy synths, and the city’s best selectors.</p><div class="built-event-meta"><span>9:00 PM</span><span>ELSEWHERE HALL</span><button class="built-save-button" type="button" aria-label="Save comparison preview event" aria-pressed="false"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M15.7 7.4c0 4.2-5.7 7.4-5.7 7.4s-5.7-3.2-5.7-7.4A3.1 3.1 0 0 1 10 5.6a3.1 3.1 0 0 1 5.7 1.8Z" stroke="currentColor" stroke-width="1.35" stroke-linejoin="round" /></svg></button></div></div></div>
-              <div class="built-wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-            </div>
-            <div class="compare-notes built-notes"><div><span class="note-number">01</span><p><strong>Intentional hierarchy</strong><small>One clear CTA leads the eye into the feed.</small></p></div><div><span class="note-number">02</span><p><strong>Semantic signals</strong><small>Category, date, venue, and status scan in order.</small></p></div><div><span class="note-number">03</span><p><strong>Ready for people</strong><small>Responsive, keyboard-friendly, and motion-aware.</small></p></div></div>
-          </article>
-        </div>
-      </section>
-
       <section class="community-section" id="community" aria-labelledby="community-title">
-        <div class="community-copy reveal"><p class="eyebrow"><span class="eyebrow-line" aria-hidden="true"></span> 04 / COMMUNITY SIGNAL</p><h2 id="community-title">Good nights are<br /><em>better together.</em></h2><p>Save the shows that pull you in. Follow your favorite rooms. Make plans that turn into stories.</p><a class="inline-link" href="#events">See what your people are saving <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 13 13 3M5 3h8v8" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" /></svg></a></div>
+        <div class="community-copy reveal"><p class="eyebrow"><span class="eyebrow-line" aria-hidden="true"></span> 03 / COMMUNITY SIGNAL</p><h2 id="community-title">Good nights are<br /><em>better together.</em></h2><p>Save the shows that pull you in. Follow your favorite rooms. Make plans that turn into stories.</p><a class="inline-link" href="#events">See what your people are saving <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 13 13 3M5 3h8v8" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" /></svg></a></div>
         <div class="proof-grid">
           <blockquote class="quote-card reveal"><div class="quote-mark" aria-hidden="true">“</div><p>ShowGo turns a blank Friday into the kind of night I want to remember.</p><footer><span class="quote-avatar">N</span><span><strong>Nia R.</strong><small>Brooklyn, NY / member since 2024</small></span></footer></blockquote>
           <div class="proof-image reveal"><img src="assets/soft-focus.jpg" alt="DJ and crowd moving together in a club" width="1360" height="768" loading="lazy" decoding="async" /><span class="proof-image-overlay" aria-hidden="true"></span><span class="proof-image-label">THE CROWD IS THE CUE</span></div>
@@ -219,11 +194,37 @@
       <section class="final-cta reveal" aria-labelledby="cta-title">
         <div class="cta-line" aria-hidden="true"></div><p class="eyebrow"><span class="eyebrow-line" aria-hidden="true"></span> YOUR NEXT MOMENT IS OUT THERE</p><h2 id="cta-title">Go where the<br /><em>energy is.</em></h2><a class="button button-primary" href="#events">Explore your city <span class="button-arrow" aria-hidden="true"><svg viewBox="0 0 18 18" fill="none"><path d="M3.5 9h10M9.5 4.5 14 9l-4.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg></span></a><div class="cta-orbit orbit-left" aria-hidden="true"></div><div class="cta-orbit orbit-right" aria-hidden="true"></div>
       </section>
+      </div>
+
+      <div class="experience-view experience-raw" id="raw-view" hidden>
+        <section class="raw-hero" id="raw-top" aria-labelledby="raw-title">
+          <div class="raw-draft-topline"><span>SHOWGO / EARLY DRAFT</span><span>VERSION 01</span></div>
+          <div class="raw-draft-nav"><strong>showgo</strong><span>Discover &nbsp;&nbsp; Events &nbsp;&nbsp; About</span><button type="button" aria-label="Open draft menu">menu</button></div>
+          <div class="raw-hero-layout">
+            <div class="raw-hero-copy"><span class="raw-kicker">EVENT DISCOVERY APP</span><h1 id="raw-title">Discover<br />music events</h1><p>See what’s going on in your city and find something to do tonight.</p><button class="raw-primary-action" type="button">SEE EVENTS</button><div class="raw-hero-meta"><span>24 events near you</span><span>New York, NY</span></div></div>
+            <div class="raw-hero-image"><img src="assets/echoes-after-dark.jpg" alt="Concert crowd at a live event" width="1360" height="768" loading="eager" decoding="async" /><span>LIVE MUSIC / NEW YORK</span></div>
+          </div>
+        </section>
+
+        <section class="raw-events" id="raw-events" aria-labelledby="raw-events-title">
+          <div class="raw-section-heading"><div><span class="raw-kicker">UPCOMING EVENTS</span><h2 id="raw-events-title">Find something<br />to do.</h2></div><p>Browse the latest live shows and events happening around you.</p></div>
+          <div class="raw-filter-row"><span class="raw-filter active">All events</span><span class="raw-filter">Today</span><span class="raw-filter">This weekend</span><label for="raw-search">Search<input id="raw-search" type="search" placeholder="Search" /></label></div>
+          <div class="raw-event-grid">
+            <article class="raw-event-card"><img src="assets/echoes-after-dark.jpg" alt="Crowd at Echoes After Dark" width="1360" height="768" loading="lazy" decoding="async" /><div><span class="raw-card-tag">ELECTRONIC</span><h3>Echoes After Dark</h3><p>A late-night collision of warm bass, hazy synths, and the city’s best selectors.</p><small>Sat, Sep 19 · Elsewhere Hall</small><button type="button">View event</button></div></article>
+            <article class="raw-event-card"><img src="assets/luna-satellites.jpg" alt="Singer at Luna and the Satellites" width="1360" height="768" loading="lazy" decoding="async" /><div><span class="raw-card-tag">INDIE POP</span><h3>Luna &amp; the Satellites</h3><p>Dream-pop for people who like their heartache cinematic and their choruses huge.</p><small>Sun, Sep 20 · Bowery Ballroom</small><button type="button">View event</button></div></article>
+            <article class="raw-event-card"><img src="assets/neon-ritual.jpg" alt="Performer at Neon Ritual" width="1360" height="768" loading="lazy" decoding="async" /><div><span class="raw-card-tag">ALT RAP</span><h3>Neon Ritual</h3><p>A full-sensory live set from the next wave of boundary-pushing NYC artists.</p><small>Thu, Sep 24 · Brooklyn Steel</small><button type="button">View event</button></div></article>
+            <article class="raw-event-card"><img src="assets/soft-focus.jpg" alt="DJ at Soft Focus" width="1360" height="768" loading="lazy" decoding="async" /><div><span class="raw-card-tag">AMBIENT</span><h3>Soft Focus</h3><p>An intimate room, slow-burning electronics, and a sound system made for getting lost.</p><small>Fri, Sep 25 · Public Records</small><button type="button">View event</button></div></article>
+          </div>
+        </section>
+
+        <section class="raw-about" id="raw-community" aria-labelledby="raw-about-title"><div><span class="raw-kicker">WHY SHOWGO?</span><h2 id="raw-about-title">Good nights<br />start here.</h2></div><p>Save the shows you like, follow your favorite venues, and make plans with your friends.</p><button class="raw-primary-action" type="button">JOIN SHOWGO</button></section>
+        <section class="raw-footer-cta"><span class="raw-kicker">DISCOVER YOUR CITY</span><h2>Find your next<br />live moment.</h2><button class="raw-primary-action" type="button">GET STARTED</button></section>
+      </div>
     </main>
 
     <footer class="site-footer">
-      <a class="brand" href="#top" aria-label="ShowGo home"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 36 36" fill="none"><path d="M4 19c3.5 0 3.5-8 7-8s3.5 13 7 13 3.5-16 7-16 3 8 7 8" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" /><path d="M4 25c3.5 0 3.5-5 7-5s3.5 8 7 8 3.5-11 7-11 3 4 7 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" opacity=".55" /></svg></span><span class="brand-word">show<span>go</span></span></a>
-      <p>Find the moment. Feel the city.</p><div class="footer-links"><a href="#events">Discover</a><a href="#community">About</a><a href="#top">Instagram <span aria-hidden="true">↗</span></a><a href="#top">TikTok <span aria-hidden="true">↗</span></a></div><span class="footer-code">SG / 2026</span>
+      <a class="brand" href="#mode-bar" aria-label="ShowGo home"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 36 36" fill="none"><path d="M4 19c3.5 0 3.5-8 7-8s3.5 13 7 13 3.5-16 7-16 3 8 7 8" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" /><path d="M4 25c3.5 0 3.5-5 7-5s3.5 8 7 8 3.5-11 7-11 3 4 7 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" opacity=".55" /></svg></span><span class="brand-word">show<span>go</span></span></a>
+      <p>Find the moment. Feel the city.</p><div class="footer-links"><a href="#events">Discover</a><a href="#community">About</a><a href="#mode-bar">Instagram <span aria-hidden="true">↗</span></a><a href="#mode-bar">TikTok <span aria-hidden="true">↗</span></a></div><span class="footer-code">SG / 2026</span>
     </footer>
   </div>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
