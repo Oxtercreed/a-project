@@ -37,7 +37,7 @@ These page rules intentionally override the generated Master recommendation wher
 - Content max-width: 1240px with 24px mobile gutters and 48px desktop gutters.
 - Main feed: event cards remain image-left on desktop and mobile; preserve essential event metadata without relying on hover.
 - Section order: hero > motion/ribbon > curated event feed > community proof > final CTA/footer.
-- Include a persistent, keyboard-operable mode switch near the top that toggles between the polished "With system" experience and a separate full-page "Without system" early draft. Expose the selected state with `aria-pressed`, preserve the same content in both views, and stack both views cleanly on mobile.
+- Include a persistent, keyboard-operable mode switch near the top that toggles between the polished "With system" experience and the preserved pre-skill landing page in `before-skill/`. Expose the selected state with `aria-pressed`; both modes represent the same ShowGo brief and remain full-page experiences.
 - Breakpoints: verify at 375px, 768px, 1024px, and 1440px. Never introduce horizontal page scrolling.
 
 ## Type

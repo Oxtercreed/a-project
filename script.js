@@ -13,6 +13,7 @@ const toast = document.querySelector('#toast');
 const modeButtons = [...document.querySelectorAll('.mode-button')];
 const systemView = document.querySelector('#system-view');
 const rawView = document.querySelector('#raw-view');
+const beforeSkillFrame = document.querySelector('#before-skill-frame');
 let toastTimer;
 
 function showToast(message) {
@@ -51,6 +52,20 @@ function updateViewLinks(showSystem) {
   });
 }
 
+function resizeBeforeSkillFrame() {
+  if (!beforeSkillFrame?.contentDocument) return;
+  const doc = beforeSkillFrame.contentDocument;
+  const bodyHeight = doc.body?.scrollHeight || 0;
+  const documentHeight = doc.documentElement?.scrollHeight || 0;
+  beforeSkillFrame.style.height = `${Math.max(bodyHeight, documentHeight, 760)}px`;
+}
+
+beforeSkillFrame?.addEventListener('load', () => {
+  resizeBeforeSkillFrame();
+  window.setTimeout(resizeBeforeSkillFrame, 250);
+});
+window.addEventListener('resize', resizeBeforeSkillFrame, { passive: true });
+
 function setExperience(mode, announce = true) {
   const showSystem = mode !== 'raw';
   if (systemView) systemView.hidden = !showSystem;
@@ -62,6 +77,7 @@ function setExperience(mode, announce = true) {
   });
   document.body.dataset.experience = showSystem ? 'system' : 'raw';
   updateViewLinks(showSystem);
+  if (!showSystem) window.requestAnimationFrame(resizeBeforeSkillFrame);
   closeMenu();
   closeSearch();
   if (announce) {

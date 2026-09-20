@@ -437,6 +437,29 @@ kbd {
   display: none;
 }
 
+.experience-raw {
+  overflow: visible;
+  background: #0b0810;
+}
+
+.before-skill-frame {
+  display: block;
+  width: 100%;
+  min-height: 760px;
+  height: 2600px;
+  border: 0;
+  background: #0b0810;
+}
+
+body[data-experience="raw"] .site-header,
+body[data-experience="raw"] .site-shell > .site-footer {
+  display: none;
+}
+
+body[data-experience="raw"] .mode-bar {
+  top: 0;
+}
+
 .mode-bar {
   position: sticky;
   z-index: 13;
